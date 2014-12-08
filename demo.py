@@ -114,5 +114,9 @@ def quit():
     else:
         return jsonify(status=False)
 
+@app.route('/test')
+def test():
+    return jsonify(status=True, msg='success')
+
 if __name__ == '__main__':
     app.run(debug=True)
