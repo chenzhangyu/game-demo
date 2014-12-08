@@ -80,12 +80,10 @@ def start():
             return jsonify(status=True, is_full=True)
         else:
             Game.now += 1
-            print 'after add', Game.now
             return jsonify(status=True, is_full=False, total=Game.total, selected=Game.selected)
 
 @app.route('/demo/get_selected', methods=['POST'])
 def get_selected():
-    print 'now', Game.now
     if Game.is_started():
         if not Game.is_end():
             return jsonify(status=True, total=Game.total, selected=Game.selected)
@@ -117,5 +115,4 @@ def quit():
         return jsonify(status=False)
 
 if __name__ == '__main__':
-    print app.url_map
     app.run(debug=True)
