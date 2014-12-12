@@ -114,9 +114,14 @@ def quit():
     else:
         return jsonify(status=False)
 
-@app.route('/test')
+@app.route('/demo/reset', methods=['POST'])
+def reset():
+    Game.quit_game()
+    return jsonify(status=True)
+
+@app.route('/test', methods=['POST'])
 def test():
     return jsonify(status=True, msg='success')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8888, debug=True)
