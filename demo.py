@@ -71,7 +71,7 @@ def init_game():
     Game.now += 1
     return jsonify(status=True, total=Game.total, selected=Game.selected)
 
-@app.route('/demo/start', methods=['POST'])
+@app.route('/demo/start', methods=['GET'])
 def start():
     if Game.total == 0:
         return jsonify(status=False)
@@ -82,7 +82,7 @@ def start():
             Game.now += 1
             return jsonify(status=True, is_full=False, total=Game.total, selected=Game.selected)
 
-@app.route('/demo/get_selected', methods=['POST'])
+@app.route('/demo/get_selected', methods=['GET'])
 def get_selected():
     if Game.is_started():
         if not Game.is_end():
@@ -106,7 +106,7 @@ def select():
     else:
         return jsonify(status=False, total=Game.total, selected=Game.selected)
 
-@app.route('/demo/quit', methods=['POST'])
+@app.route('/demo/quit', methods=['GET'])
 def quit():
     if Game.is_end():
         Game.quit_game()
@@ -114,12 +114,12 @@ def quit():
     else:
         return jsonify(status=False)
 
-@app.route('/demo/reset', methods=['POST'])
+@app.route('/demo/reset', methods=['GET'])
 def reset():
     Game.quit_game()
     return jsonify(status=True)
 
-@app.route('/test', methods=['POST'])
+@app.route('/test', methods=['GET'])
 def test():
     return jsonify(status=True, msg='success')
 
